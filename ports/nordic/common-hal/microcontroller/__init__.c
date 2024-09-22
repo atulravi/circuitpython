@@ -1,28 +1,8 @@
-/*
- * This file is part of the MicroPython project, http://micropython.org/
- *
- * The MIT License (MIT)
- *
- * Copyright (c) 2016 Scott Shawcroft for Adafruit Industries
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+// This file is part of the CircuitPython project: https://circuitpython.org
+//
+// SPDX-FileCopyrightText: Copyright (c) 2016 Scott Shawcroft for Adafruit Industries
+//
+// SPDX-License-Identifier: MIT
 
 #include "py/mphal.h"
 #include "py/obj.h"
@@ -41,6 +21,7 @@
 #include "supervisor/shared/safe_mode.h"
 #include "nrfx_glue.h"
 #include "nrf_nvic.h"
+#include "nrf_power.h"
 
 // This routine should work even when interrupts are disabled. Used by OneWire
 // for precise timing.
@@ -81,10 +62,14 @@ void common_hal_mcu_enable_interrupts() {
 
 void common_hal_mcu_on_next_reset(mcu_runmode_t runmode) {
     enum { DFU_MAGIC_UF2_RESET = 0x57 };
+    uint8_t new_value = 0;
     if (runmode == RUNMODE_BOOTLOADER || runmode == RUNMODE_UF2) {
-        sd_power_gpregret_set(0, DFU_MAGIC_UF2_RESET);
-    } else {
-        sd_power_gpregret_set(0, 0);
+        new_value = DFU_MAGIC_UF2_RESET;
+    }
+    int err_code = sd_power_gpregret_set(0, DFU_MAGIC_UF2_RESET);
+    if (err_code != NRF_SUCCESS) {
+        // Set it without the soft device if the SD failed. (It may be off.)
+        nrf_power_gpregret_set(NRF_POWER, new_value);
     }
     if (runmode == RUNMODE_SAFE_MODE) {
         safe_mode_on_next_reset(SAFE_MODE_PROGRAMMATIC);
@@ -126,7 +111,7 @@ watchdog_watchdogtimer_obj_t common_hal_mcu_watchdogtimer_obj = {
 };
 #endif
 
-STATIC const mp_rom_map_elem_t mcu_pin_globals_table[] = {
+static const mp_rom_map_elem_t mcu_pin_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_P0_00), MP_ROM_PTR(&pin_P0_00) },
     { MP_ROM_QSTR(MP_QSTR_P0_01), MP_ROM_PTR(&pin_P0_01) },
     { MP_ROM_QSTR(MP_QSTR_P0_02), MP_ROM_PTR(&pin_P0_02) },

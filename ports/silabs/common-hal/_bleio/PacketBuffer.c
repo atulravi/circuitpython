@@ -41,7 +41,7 @@
 bleio_packet_buffer_obj_list_t bleio_packet_buffer_list;
 
 // Write data to ringbuf of packet buffer
-STATIC void write_to_ringbuf(bleio_packet_buffer_obj_t *self,
+static void write_to_ringbuf(bleio_packet_buffer_obj_t *self,
     uint8_t *data,
     uint16_t len) {
 
@@ -70,7 +70,7 @@ STATIC void write_to_ringbuf(bleio_packet_buffer_obj_t *self,
 }
 
 // Write characteristic or attribute value
-STATIC int queue_next_write(bleio_packet_buffer_obj_t *self) {
+static int queue_next_write(bleio_packet_buffer_obj_t *self) {
     self->packet_queued = false;
 
     uint32_t sc = SL_STATUS_OK;
@@ -145,7 +145,7 @@ void _common_hal_bleio_packet_buffer_construct(
     uint32_t *outgoing_buffer1,
     uint32_t *outgoing_buffer2,
     size_t max_packet_size,
-    void *static_handler_entry) {
+    ble_event_handler_t static_handler_entry) {
 
     bleio_characteristic_properties_t temp_prop;
     self->characteristic = characteristic;

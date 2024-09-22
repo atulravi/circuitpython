@@ -121,11 +121,12 @@ msgstr "%q i %q måste vara av typen %q, inte %q"
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/usb_host/Port.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
 #: ports/raspberrypi/common-hal/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/usb_host/Port.c
 #: shared-bindings/digitalio/DigitalInOut.c
-#: shared-bindings/microcontroller/Pin.c
+#: shared-bindings/microcontroller/Pin.c shared-module/max3421e/Max3421E.c
 msgid "%q in use"
 msgstr "%q används redan"
 
@@ -165,7 +166,7 @@ msgstr "längden på %q måste vara <= %d"
 msgid "%q length must be >= %d"
 msgstr "längden på %q måste vara >= %d"
 
-#: py/objmodule.c py/runtime.c
+#: py/modsys.c py/objmodule.c py/runtime.c
 msgid "%q moved from %q to %q"
 msgstr "%q flyttad från %q till %q"
 
@@ -427,6 +428,10 @@ msgstr "'data' kräver heltalsargument"
 msgid "'label' requires 1 argument"
 msgstr "'label' kräver 1 argument"
 
+#: py/emitnative.c
+msgid "'not' not implemented"
+msgstr ""
+
 #: py/compile.c
 msgid "'return' outside function"
 msgstr "'return' utanför funktion"
@@ -523,7 +528,7 @@ msgid "All event channels in use"
 msgstr "Alla händelsekanaler används"
 
 #: ports/raspberrypi/common-hal/floppyio/__init__.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
 #: ports/raspberrypi/common-hal/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/usb_host/Port.c
 msgid "All state machines in use"
@@ -533,7 +538,7 @@ msgstr "Alla tillståndsmaskiner används"
 msgid "All sync event channels in use"
 msgstr "Alla synkroniseringskanaler används"
 
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
 msgid "All timers for this pin are in use"
 msgstr "Alla timers för denna pinne är i bruk"
 
@@ -1141,10 +1146,12 @@ msgstr "Indata tar för lång tid"
 msgid "Input/output error"
 msgstr "Indata-/utdatafel"
 
+#: ports/espressif/common-hal/_bleio/__init__.c
 #: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Insufficient authentication"
 msgstr "Otillräcklig autentisering"
 
+#: ports/espressif/common-hal/_bleio/__init__.c
 #: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Insufficient encryption"
 msgstr "Otillräcklig kryptering"
@@ -1181,10 +1188,13 @@ msgstr "Internt fel #%d"
 #: ports/atmel-samd/common-hal/alarm/pin/PinAlarm.c
 #: ports/atmel-samd/common-hal/countio/Counter.c
 #: ports/atmel-samd/common-hal/frequencyio/FrequencyIn.c
+#: ports/atmel-samd/common-hal/max3421e/Max3421E.c
 #: ports/atmel-samd/common-hal/ps2io/Ps2.c
 #: ports/atmel-samd/common-hal/pulseio/PulseIn.c
 #: ports/atmel-samd/common-hal/rotaryio/IncrementalEncoder.c
-#: ports/cxd56/common-hal/pulseio/PulseIn.c shared-bindings/pwmio/PWMOut.c
+#: ports/cxd56/common-hal/pulseio/PulseIn.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
+#: shared-bindings/pwmio/PWMOut.c
 msgid "Internal resource(s) in use"
 msgstr ""
 
@@ -1200,14 +1210,22 @@ msgstr "Interrupt-fel."
 msgid "Interrupted by output function"
 msgstr "Avbruten av utgångsfunktion"
 
+#: ports/espressif/common-hal/espulp/ULP.c
+#: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c py/argcheck.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
+#: shared-module/aurora_epaper/aurora_framebuffer.c
 msgid "Invalid %q"
 msgstr "Ogiltig %q"
+
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
+#: shared-module/aurora_epaper/aurora_framebuffer.c
+msgid "Invalid %q and %q"
+msgstr ""
 
 #: ports/atmel-samd/common-hal/microcontroller/Pin.c
 #: ports/espressif/common-hal/dotclockframebuffer/DotClockFramebuffer.c
@@ -1307,9 +1325,17 @@ msgstr "Layer är redan med i en grupp"
 msgid "Layer must be a Group or TileGrid subclass"
 msgstr "Layer måste vara en underklass av Group eller TileGrid"
 
+#: shared-bindings/audiocore/RawSample.c
+msgid "Length of %q must be an even multiple of channel_count * type_size"
+msgstr ""
+
 #: ports/espressif/common-hal/espidf/__init__.c
 msgid "MAC address was invalid"
 msgstr "MAC-adressen var ogiltig"
+
+#: ports/espressif/common-hal/_bleio/Characteristic.c
+msgid "MITM security not supported"
+msgstr ""
 
 #: shared-bindings/is31fl3741/IS31FL3741.c
 msgid "Mapping must be a tuple"
@@ -1384,10 +1410,6 @@ msgstr "NVS-fel"
 #: shared-bindings/socketpool/SocketPool.c
 msgid "Name or service not known"
 msgstr "Namn eller tjänst inte känd"
-
-#: py/qstr.c
-msgid "Name too long"
-msgstr "Name är för långt"
 
 #: shared-bindings/displayio/TileGrid.c
 msgid "New bitmap must be same size as old bitmap"
@@ -1578,7 +1600,6 @@ msgstr "Endast 8 eller 16 bitars mono med %dx översampling stöds."
 msgid "Only IPv4 addresses supported"
 msgstr "Endast IPv4-adresser stöds"
 
-#: ports/espressif/common-hal/socketpool/Socket.c
 #: ports/raspberrypi/common-hal/socketpool/Socket.c
 msgid "Only IPv4 sockets supported"
 msgstr "Endast IPv4-socket stöds"
@@ -2038,6 +2059,10 @@ msgstr "För många kanaler i urvalet"
 msgid "Too many channels in sample."
 msgstr "För många kanaler i sampling."
 
+#: ports/espressif/common-hal/_bleio/Characteristic.c
+msgid "Too many descriptors"
+msgstr ""
+
 #: shared-module/displayio/__init__.c
 msgid "Too many display busses; forgot displayio.release_displays() ?"
 msgstr "För många displaybussar; glömt displayio.release_displays() ?"
@@ -2177,6 +2202,7 @@ msgstr "Okänt BLE-fel vid %s:%d: %d"
 msgid "Unknown BLE error: %d"
 msgstr "Okänt BLE-fel: %d"
 
+#: ports/espressif/common-hal/max3421e/Max3421E.c
 #: ports/raspberrypi/common-hal/wifi/__init__.c
 #, c-format
 msgid "Unknown error code %d"
@@ -2247,9 +2273,14 @@ msgstr "Format stöds inte"
 msgid "Unsupported hash algorithm"
 msgstr "Hash-algoritmen stöds inte"
 
+#: ports/espressif/common-hal/socketpool/Socket.c
+msgid "Unsupported socket type"
+msgstr ""
+
+#: ports/espressif/common-hal/_bleio/Adapter.c
 #: ports/espressif/common-hal/dualbank/__init__.c
-msgid "Update Failed"
-msgstr "Uppdateringen misslyckades"
+msgid "Update failed"
+msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
 #: ports/espressif/common-hal/_bleio/Descriptor.c
@@ -2353,6 +2384,7 @@ msgid "You pressed the SW38 button at start up."
 msgstr "Du tryckte ned SW38-knappen vid start."
 
 #: ports/espressif/boards/hardkernel_odroid_go/mpconfigboard.h
+#: ports/espressif/boards/vidi_x/mpconfigboard.h
 msgid "You pressed the VOLUME button at start up."
 msgstr "Du tryckte ned VOLYM-knappen vid start."
 
@@ -2419,6 +2451,10 @@ msgstr "argumentet argsort måste vara en ndarray"
 #: extmod/ulab/code/numpy/numerical.c
 msgid "argsort is not implemented for flattened arrays"
 msgstr "argsort är inte implementerad för tillplattade matriser"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "argument must be None, an integer or a tuple of integers"
+msgstr ""
 
 #: py/compile.c
 msgid "argument name reused"
@@ -2655,6 +2691,10 @@ msgid "can't do binary op between '%q' and '%q'"
 msgstr "kan inte göra binära op mellan '%q' och '%q'"
 
 #: py/emitnative.c
+msgid "can't do unary op of '%q'"
+msgstr ""
+
+#: py/emitnative.c
 msgid "can't implicitly convert '%q' to 'bool'"
 msgstr "kan inte implicit konvertera '%q' till 'bool'"
 
@@ -2717,10 +2757,6 @@ msgstr ""
 #: py/objcomplex.c
 msgid "can't truncate-divide a complex number"
 msgstr "kan inte trunker-dividera ett komplext tal"
-
-#: extmod/moductypes.c
-msgid "can't unambiguously get sizeof scalar"
-msgstr "kan inte entydigt få fram storleken på skalären"
 
 #: extmod/modasyncio.c
 msgid "can't wait"
@@ -3453,7 +3489,7 @@ msgstr "matrisen är inte positiv bestämd"
 msgid "max_length must be 0-%d when fixed_length is %s"
 msgstr "max_length måste vara 0-%d när fixed_length är %s"
 
-#: extmod/ulab/code/ndarray.c
+#: extmod/ulab/code/ndarray.c extmod/ulab/code/numpy/random/random.c
 msgid "maximum number of dimensions is "
 msgstr "maximalt antal dimensioner är "
 
@@ -3538,6 +3574,10 @@ msgstr "namnet '%q' är inte definierat"
 msgid "name not defined"
 msgstr "namn inte definierat"
 
+#: py/qstr.c
+msgid "name too long"
+msgstr ""
+
 #: py/persistentcode.c
 msgid "native code in .mpy unsupported"
 msgstr "Inbyggd kod i .mpy stöds inte"
@@ -3591,7 +3631,7 @@ msgstr "ingen bindning för ickelokal hittad"
 msgid "no default packer"
 msgstr "ingen standardpackare"
 
-#: extmod/modrandom.c
+#: extmod/modrandom.c extmod/ulab/code/numpy/random/random.c
 msgid "no default seed"
 msgstr "inget standard seed"
 
@@ -3800,6 +3840,10 @@ msgstr "ord() förväntade sig ett tecken, men en sträng med längden %d hittad
 msgid "out array is too small"
 msgstr "matrisen för out är för liten"
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "out has wrong type"
+msgstr ""
+
 #: extmod/ulab/code/numpy/vector.c
 msgid "out keyword is not supported for complex dtype"
 msgstr "nyckelordet out stöds inte för komplex dtyp"
@@ -3823,6 +3867,14 @@ msgstr "out måste vara av float dtype"
 #: shared-bindings/bitmaptools/__init__.c
 msgid "out of range of target"
 msgstr "utanför räckvidd för target"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array has wrong type"
+msgstr ""
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array must be contiguous"
+msgstr ""
 
 #: py/objint_mpz.c
 msgid "overflow converting long int to machine word"
@@ -3862,7 +3914,7 @@ msgstr "pop från en tom PulseIn"
 msgid "pop from empty %q"
 msgstr "pop från tom %q"
 
-#: shared-bindings/socketpool/Socket.c shared-bindings/ssl/SSLSocket.c
+#: shared-bindings/socketpool/Socket.c
 msgid "port must be >= 0"
 msgstr "port måste vara >= 0"
 
@@ -3950,6 +4002,10 @@ msgstr "skriptkompilering stöds inte"
 msgid "set unsupported"
 msgstr "set stöds inte"
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "shape must be None, and integer or a tuple of integers"
+msgstr ""
+
 #: extmod/ulab/code/ndarray.c
 msgid "shape must be integer or tuple of integers"
 msgstr "shape måste vara ett heltal eller en tupel av heltal"
@@ -3969,6 +4025,10 @@ msgstr "tecken tillåts inte med heltalsformatspecificeraren 'c'"
 #: extmod/ulab/code/ulab_tools.c
 msgid "size is defined for ndarrays only"
 msgstr "storlek är enbart definierad ndarrays"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "size must match out.shape when used together"
+msgstr ""
 
 #: py/nativeglue.c
 msgid "slice unsupported"
@@ -4043,18 +4103,6 @@ msgstr "strängindex utanför intervallet"
 msgid "string indices must be integers, not %s"
 msgstr "strängindex måste vara heltal, inte %s"
 
-#: extmod/moductypes.c
-msgid "struct: can't index"
-msgstr "struct: kan inte indexera"
-
-#: extmod/moductypes.c
-msgid "struct: index out of range"
-msgstr "struct: index utanför intervallet"
-
-#: extmod/moductypes.c
-msgid "struct: no fields"
-msgstr "struct: inga fält"
-
 #: py/objarray.c py/objstr.c
 msgid "substring not found"
 msgstr "det gick inte att hitta delsträng"
@@ -4066,10 +4114,6 @@ msgstr "super() kan inte hitta self"
 #: extmod/modjson.c
 msgid "syntax error in JSON"
 msgstr "syntaxfel i JSON"
-
-#: extmod/moductypes.c
-msgid "syntax error in uctypes descriptor"
-msgstr "syntaxfel i uctypes deskriptor"
 
 #: extmod/modtime.c
 msgid "ticks interval overflow"
@@ -4178,10 +4222,6 @@ msgstr "typen tar 1 eller 3 argument"
 #: py/objint_longlong.c
 msgid "ulonglong too large"
 msgstr "ulonglong för stor"
-
-#: py/emitnative.c
-msgid "unary op %q not implemented"
-msgstr "binär op %q är inte implementerad"
 
 #: py/parse.c
 msgid "unexpected indent"
@@ -4374,6 +4414,30 @@ msgstr "zi måste vara av typ float"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi måste vara i formen (n_section, 2)"
+
+#~ msgid "can't unambiguously get sizeof scalar"
+#~ msgstr "kan inte entydigt få fram storleken på skalären"
+
+#~ msgid "struct: can't index"
+#~ msgstr "struct: kan inte indexera"
+
+#~ msgid "struct: index out of range"
+#~ msgstr "struct: index utanför intervallet"
+
+#~ msgid "struct: no fields"
+#~ msgstr "struct: inga fält"
+
+#~ msgid "syntax error in uctypes descriptor"
+#~ msgstr "syntaxfel i uctypes deskriptor"
+
+#~ msgid "unary op %q not implemented"
+#~ msgstr "binär op %q är inte implementerad"
+
+#~ msgid "Name too long"
+#~ msgstr "Name är för långt"
+
+#~ msgid "Update Failed"
+#~ msgstr "Uppdateringen misslyckades"
 
 #~ msgid "Error: Failure to bind"
 #~ msgstr "Fel: Bind misslyckades"

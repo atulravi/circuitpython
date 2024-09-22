@@ -6,14 +6,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-04 12:55-0600\n"
-"PO-Revision-Date: 2024-03-11 09:56+0000\n"
-"Last-Translator: Sokromatrix <kroschewski1971@gmail.com>\n"
+"PO-Revision-Date: 2024-06-18 19:09+0000\n"
+"Last-Translator: Xfox20 <136956349+Xfox20@users.noreply.github.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: main.c
 msgid ""
@@ -122,11 +122,12 @@ msgstr "%q in %q muss von Typ %q sein, nicht %q"
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/usb_host/Port.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
 #: ports/raspberrypi/common-hal/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/usb_host/Port.c
 #: shared-bindings/digitalio/DigitalInOut.c
-#: shared-bindings/microcontroller/Pin.c
+#: shared-bindings/microcontroller/Pin.c shared-module/max3421e/Max3421E.c
 msgid "%q in use"
 msgstr "%q in Benutzung"
 
@@ -166,7 +167,7 @@ msgstr "%q länge muss kleiner oder gleich %d sein"
 msgid "%q length must be >= %d"
 msgstr "%q länge muss größer oder gleich %d sein"
 
-#: py/objmodule.c py/runtime.c
+#: py/modsys.c py/objmodule.c py/runtime.c
 msgid "%q moved from %q to %q"
 msgstr "%q von %q nach %q versetzt"
 
@@ -428,6 +429,10 @@ msgstr "'data' erfordert Integer-Argumente"
 msgid "'label' requires 1 argument"
 msgstr "'label' erfordert genau ein Argument"
 
+#: py/emitnative.c
+msgid "'not' not implemented"
+msgstr ""
+
 #: py/compile.c
 msgid "'return' outside function"
 msgstr "'return' außerhalb einer Funktion"
@@ -524,7 +529,7 @@ msgid "All event channels in use"
 msgstr "Alle Event-Kanäle werden benutzt"
 
 #: ports/raspberrypi/common-hal/floppyio/__init__.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
 #: ports/raspberrypi/common-hal/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/usb_host/Port.c
 msgid "All state machines in use"
@@ -534,7 +539,7 @@ msgstr "Alle State-Maschinen in Verwendung"
 msgid "All sync event channels in use"
 msgstr "Alle Sync Event-Kanäle werden benutzt"
 
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c
 msgid "All timers for this pin are in use"
 msgstr "Alle Timer für diesen Pin werden bereits benutzt"
 
@@ -1145,10 +1150,12 @@ msgstr "Input benötigt zu lange"
 msgid "Input/output error"
 msgstr "Eingabe-/Ausgabefehler"
 
+#: ports/espressif/common-hal/_bleio/__init__.c
 #: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Insufficient authentication"
 msgstr "Unzureichende Authentifizierung"
 
+#: ports/espressif/common-hal/_bleio/__init__.c
 #: ports/nordic/common-hal/_bleio/__init__.c
 msgid "Insufficient encryption"
 msgstr "Unzureichende Verschlüsselung"
@@ -1185,10 +1192,13 @@ msgstr "Interner Fehler #%d"
 #: ports/atmel-samd/common-hal/alarm/pin/PinAlarm.c
 #: ports/atmel-samd/common-hal/countio/Counter.c
 #: ports/atmel-samd/common-hal/frequencyio/FrequencyIn.c
+#: ports/atmel-samd/common-hal/max3421e/Max3421E.c
 #: ports/atmel-samd/common-hal/ps2io/Ps2.c
 #: ports/atmel-samd/common-hal/pulseio/PulseIn.c
 #: ports/atmel-samd/common-hal/rotaryio/IncrementalEncoder.c
-#: ports/cxd56/common-hal/pulseio/PulseIn.c shared-bindings/pwmio/PWMOut.c
+#: ports/cxd56/common-hal/pulseio/PulseIn.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
+#: shared-bindings/pwmio/PWMOut.c
 msgid "Internal resource(s) in use"
 msgstr "Interne Ressource(n) in Benutzung"
 
@@ -1204,14 +1214,22 @@ msgstr "Interrupt Fehler."
 msgid "Interrupted by output function"
 msgstr "Unterbrochen durch Ausgabefunktion"
 
+#: ports/espressif/common-hal/espulp/ULP.c
+#: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
-#: ports/raspberrypi/common-hal/picodvi/Framebuffer.c py/argcheck.c
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
+#: shared-module/aurora_epaper/aurora_framebuffer.c
 msgid "Invalid %q"
 msgstr "Ungültiger %q"
+
+#: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2350.c
+#: shared-module/aurora_epaper/aurora_framebuffer.c
+msgid "Invalid %q and %q"
+msgstr ""
 
 #: ports/atmel-samd/common-hal/microcontroller/Pin.c
 #: ports/espressif/common-hal/dotclockframebuffer/DotClockFramebuffer.c
@@ -1311,9 +1329,17 @@ msgstr "Ebene ist bereits in der Gruppe"
 msgid "Layer must be a Group or TileGrid subclass"
 msgstr "Ebene muss eine Gruppe oder eine TileGrid Subklasse sein"
 
+#: shared-bindings/audiocore/RawSample.c
+msgid "Length of %q must be an even multiple of channel_count * type_size"
+msgstr ""
+
 #: ports/espressif/common-hal/espidf/__init__.c
 msgid "MAC address was invalid"
 msgstr "MAC Adresse war ungültig"
+
+#: ports/espressif/common-hal/_bleio/Characteristic.c
+msgid "MITM security not supported"
+msgstr ""
 
 #: shared-bindings/is31fl3741/IS31FL3741.c
 msgid "Mapping must be a tuple"
@@ -1388,10 +1414,6 @@ msgstr "NVS-Fehler"
 #: shared-bindings/socketpool/SocketPool.c
 msgid "Name or service not known"
 msgstr "Name oder Dienst nicht bekannt"
-
-#: py/qstr.c
-msgid "Name too long"
-msgstr "Name zu lang"
 
 #: shared-bindings/displayio/TileGrid.c
 msgid "New bitmap must be same size as old bitmap"
@@ -1582,7 +1604,6 @@ msgstr "Es wird nur 8 oder 16 bit mono mit %dx Oversampling unterstützt."
 msgid "Only IPv4 addresses supported"
 msgstr "Nur IPv4-Adressen werden unterstützt"
 
-#: ports/espressif/common-hal/socketpool/Socket.c
 #: ports/raspberrypi/common-hal/socketpool/Socket.c
 msgid "Only IPv4 sockets supported"
 msgstr "Nur IPv4-Sockets werden unterstützt"
@@ -2051,6 +2072,10 @@ msgstr "Zu viele Kanäle im Beispiel"
 msgid "Too many channels in sample."
 msgstr "Zu viele Kanäle im sample."
 
+#: ports/espressif/common-hal/_bleio/Characteristic.c
+msgid "Too many descriptors"
+msgstr ""
+
 #: shared-module/displayio/__init__.c
 msgid "Too many display busses; forgot displayio.release_displays() ?"
 msgstr "Zu viele Display-Busse, displayio.release_displays() vergessen?"
@@ -2190,6 +2215,7 @@ msgstr "Unbekannter BLE-Fehler bei %s:%d: %d"
 msgid "Unknown BLE error: %d"
 msgstr "Unbekannter BLE-Fehler: %d"
 
+#: ports/espressif/common-hal/max3421e/Max3421E.c
 #: ports/raspberrypi/common-hal/wifi/__init__.c
 #, c-format
 msgid "Unknown error code %d"
@@ -2262,9 +2288,14 @@ msgstr "Nicht unterstütztes Format"
 msgid "Unsupported hash algorithm"
 msgstr "Hash Algorithmus wird nicht unterstützt"
 
+#: ports/espressif/common-hal/socketpool/Socket.c
+msgid "Unsupported socket type"
+msgstr ""
+
+#: ports/espressif/common-hal/_bleio/Adapter.c
 #: ports/espressif/common-hal/dualbank/__init__.c
-msgid "Update Failed"
-msgstr "Update fehlgeschlagen"
+msgid "Update failed"
+msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
 #: ports/espressif/common-hal/_bleio/Descriptor.c
@@ -2356,7 +2387,7 @@ msgstr "Der BOOT-Knopf wurde beim Starten gedrückt"
 #: ports/espressif/boards/adafruit_feather_esp32c6_4mbflash_nopsram/mpconfigboard.h
 #: ports/espressif/boards/adafruit_itsybitsy_esp32/mpconfigboard.h
 msgid "You pressed the BOOT button at start up."
-msgstr ""
+msgstr "Der BOOT-Knopf wurde beim Starten gedrückt."
 
 #: ports/espressif/boards/adafruit_huzzah32_breakout/mpconfigboard.h
 msgid "You pressed the GPIO0 button at start up."
@@ -2371,6 +2402,7 @@ msgid "You pressed the SW38 button at start up."
 msgstr "Der SW38-Knopf wurde beim Starten gedrückt."
 
 #: ports/espressif/boards/hardkernel_odroid_go/mpconfigboard.h
+#: ports/espressif/boards/vidi_x/mpconfigboard.h
 msgid "You pressed the VOLUME button at start up."
 msgstr "Der VOLUME-Knopf wurde beim Starten gedrückt."
 
@@ -2437,6 +2469,10 @@ msgstr "Das Argument argsort muss ein ndarray sein"
 #: extmod/ulab/code/numpy/numerical.c
 msgid "argsort is not implemented for flattened arrays"
 msgstr "argsort ist für flattened Arrays nicht implementiert"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "argument must be None, an integer or a tuple of integers"
+msgstr ""
 
 #: py/compile.c
 msgid "argument name reused"
@@ -2675,6 +2711,10 @@ msgid "can't do binary op between '%q' and '%q'"
 msgstr "Eine binäre Operation zwischen '%q' und '%q' ist nicht möglich"
 
 #: py/emitnative.c
+msgid "can't do unary op of '%q'"
+msgstr ""
+
+#: py/emitnative.c
 msgid "can't implicitly convert '%q' to 'bool'"
 msgstr "Kann '%q' nicht implizit nach 'bool' konvertieren"
 
@@ -2740,10 +2780,6 @@ msgstr ""
 
 #: py/objcomplex.c
 msgid "can't truncate-divide a complex number"
-msgstr ""
-
-#: extmod/moductypes.c
-msgid "can't unambiguously get sizeof scalar"
 msgstr ""
 
 #: extmod/modasyncio.c
@@ -3482,7 +3518,7 @@ msgstr "Matrix ist nicht positiv definitiv"
 msgid "max_length must be 0-%d when fixed_length is %s"
 msgstr "max_length muss 0-%d sein, wenn fixed_length %s ist"
 
-#: extmod/ulab/code/ndarray.c
+#: extmod/ulab/code/ndarray.c extmod/ulab/code/numpy/random/random.c
 msgid "maximum number of dimensions is "
 msgstr "Maximale Anzahl an Dimensionen ist "
 
@@ -3567,6 +3603,10 @@ msgstr "Name '%q' ist nirgends definiert worden (Schreibweise kontrollieren)"
 msgid "name not defined"
 msgstr "Dieser Name ist nirgends definiert worden (Schreibweise kontrollieren)"
 
+#: py/qstr.c
+msgid "name too long"
+msgstr ""
+
 #: py/persistentcode.c
 msgid "native code in .mpy unsupported"
 msgstr "Nativer Code in .mpy wird nicht unterstützt"
@@ -3620,7 +3660,7 @@ msgstr "Keine Bindung für nichtlokale Variable gefunden"
 msgid "no default packer"
 msgstr "kein Standard-Packer"
 
-#: extmod/modrandom.c
+#: extmod/modrandom.c extmod/ulab/code/numpy/random/random.c
 msgid "no default seed"
 msgstr "kein Standard-Seed"
 
@@ -3835,6 +3875,10 @@ msgstr ""
 msgid "out array is too small"
 msgstr "Ausgabe-Array ist zu klein"
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "out has wrong type"
+msgstr ""
+
 #: extmod/ulab/code/numpy/vector.c
 msgid "out keyword is not supported for complex dtype"
 msgstr "out-Schlüsselwort wird nicht unterstützt für komplexen dtype"
@@ -3858,6 +3902,14 @@ msgstr "out muss vom Typ dtype sein"
 #: shared-bindings/bitmaptools/__init__.c
 msgid "out of range of target"
 msgstr "Außerhalb des Bereichs des Ziels"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array has wrong type"
+msgstr ""
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "output array must be contiguous"
+msgstr ""
 
 #: py/objint_mpz.c
 msgid "overflow converting long int to machine word"
@@ -3897,7 +3949,7 @@ msgstr "pop von einem leeren PulseIn"
 msgid "pop from empty %q"
 msgstr "Pop aus leerem %q"
 
-#: shared-bindings/socketpool/Socket.c shared-bindings/ssl/SSLSocket.c
+#: shared-bindings/socketpool/Socket.c
 msgid "port must be >= 0"
 msgstr "Port muss >= 0 sein"
 
@@ -3985,6 +4037,10 @@ msgstr "kompilieren von Skripten nicht unterstützt"
 msgid "set unsupported"
 msgstr "nicht unterstützt"
 
+#: extmod/ulab/code/numpy/random/random.c
+msgid "shape must be None, and integer or a tuple of integers"
+msgstr ""
+
 #: extmod/ulab/code/ndarray.c
 msgid "shape must be integer or tuple of integers"
 msgstr "Form muss eine Ganzzahl oder ein Tupel von Ganzzahlen sein"
@@ -4004,6 +4060,10 @@ msgstr "Vorzeichen mit ganzzahligem Formatbezeichner 'c' nicht erlaubt"
 #: extmod/ulab/code/ulab_tools.c
 msgid "size is defined for ndarrays only"
 msgstr "Größe ist nur für ndarrays definiert"
+
+#: extmod/ulab/code/numpy/random/random.c
+msgid "size must match out.shape when used together"
+msgstr ""
 
 #: py/nativeglue.c
 msgid "slice unsupported"
@@ -4078,18 +4138,6 @@ msgstr "String index außerhalb des Bereiches"
 msgid "string indices must be integers, not %s"
 msgstr "String indizes müssen Integer sein, nicht %s"
 
-#: extmod/moductypes.c
-msgid "struct: can't index"
-msgstr "struct: kann nicht indiziert werden"
-
-#: extmod/moductypes.c
-msgid "struct: index out of range"
-msgstr "struct: index außerhalb gültigen Bereichs"
-
-#: extmod/moductypes.c
-msgid "struct: no fields"
-msgstr "struct: keine Felder"
-
 #: py/objarray.c py/objstr.c
 msgid "substring not found"
 msgstr "substring nicht gefunden"
@@ -4101,10 +4149,6 @@ msgstr "super() kann self nicht finden"
 #: extmod/modjson.c
 msgid "syntax error in JSON"
 msgstr "Syntaxfehler in JSON"
-
-#: extmod/moductypes.c
-msgid "syntax error in uctypes descriptor"
-msgstr "Syntaxfehler in uctypes Deskriptor"
 
 #: extmod/modtime.c
 msgid "ticks interval overflow"
@@ -4213,10 +4257,6 @@ msgstr "Typ akzeptiert 1 oder 3 Argumente"
 #: py/objint_longlong.c
 msgid "ulonglong too large"
 msgstr "ulonglong zu groß"
-
-#: py/emitnative.c
-msgid "unary op %q not implemented"
-msgstr "Der unäre Operator %q ist nicht implementiert"
 
 #: py/parse.c
 msgid "unexpected indent"
@@ -4341,7 +4381,7 @@ msgstr ""
 
 #: shared-bindings/bitmapfilter/__init__.c
 msgid "weights must be an object of type %q, %q, %q, or %q, not %q "
-msgstr ""
+msgstr "Gewichte müssen ein Objekt des Typs %q, %q, %q, or %q, not %q sein "
 
 #: shared-bindings/is31fl3741/FrameBuffer.c
 msgid "width must be greater than zero"
@@ -4413,6 +4453,27 @@ msgstr "zi muss eine Gleitkommazahl sein"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi muss die Form (n_section, 2) haben"
+
+#~ msgid "struct: can't index"
+#~ msgstr "struct: kann nicht indiziert werden"
+
+#~ msgid "struct: index out of range"
+#~ msgstr "struct: index außerhalb gültigen Bereichs"
+
+#~ msgid "struct: no fields"
+#~ msgstr "struct: keine Felder"
+
+#~ msgid "syntax error in uctypes descriptor"
+#~ msgstr "Syntaxfehler in uctypes Deskriptor"
+
+#~ msgid "unary op %q not implemented"
+#~ msgstr "Der unäre Operator %q ist nicht implementiert"
+
+#~ msgid "Name too long"
+#~ msgstr "Name zu lang"
+
+#~ msgid "Update Failed"
+#~ msgstr "Update fehlgeschlagen"
 
 #~ msgid "You pressed the boot button at start up."
 #~ msgstr "Der Boot-Knopf wurde beim Starten gedrückt."

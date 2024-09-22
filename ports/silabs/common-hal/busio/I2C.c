@@ -30,9 +30,9 @@
 #include "shared-bindings/microcontroller/__init__.h"
 #include "shared-bindings/microcontroller/Pin.h"
 
-STATIC I2CSPM_Init_TypeDef i2cspm_init;
-STATIC bool in_used = false;
-STATIC bool never_reset = false;
+static I2CSPM_Init_TypeDef i2cspm_init;
+static bool in_used = false;
+static bool never_reset = false;
 
 // Reser I2C peripheral
 void i2c_reset(void) {
@@ -125,6 +125,9 @@ bool common_hal_busio_i2c_probe(busio_i2c_obj_t *self, uint8_t addr) {
 
 // Lock I2C bus
 bool common_hal_busio_i2c_try_lock(busio_i2c_obj_t *self) {
+    if (common_hal_busio_i2c_deinited(self)) {
+        return false;
+    }
     bool grabbed_lock = false;
 
     if (!self->has_lock) {

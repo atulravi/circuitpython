@@ -1,29 +1,8 @@
-/*
- * This file is part of the MicroPython project, http://micropython.org/
- *
- * The MIT License (MIT)
- *
- * Copyright (c) Dan Halbert for Adafruit Industries
- * Copyright (c) 2018 Artur Pacholec
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+// This file is part of the CircuitPython project: https://circuitpython.org
+//
+// SPDX-FileCopyrightText: Copyright (c) 2018 Artur Pacholec
+//
+// SPDX-License-Identifier: MIT
 
 #include "py/runtime.h"
 
@@ -35,7 +14,7 @@
 #include "common-hal/_bleio/Adapter.h"
 #include "common-hal/_bleio/bonding.h"
 
-STATIC uint16_t characteristic_get_cccd(uint16_t cccd_handle, uint16_t conn_handle) {
+static uint16_t characteristic_get_cccd(uint16_t cccd_handle, uint16_t conn_handle) {
     uint16_t cccd;
     ble_gatts_value_t value = {
         .p_value = (uint8_t *)&cccd,
@@ -55,7 +34,7 @@ STATIC uint16_t characteristic_get_cccd(uint16_t cccd_handle, uint16_t conn_hand
 }
 
 
-STATIC void characteristic_gatts_notify_indicate(uint16_t handle, uint16_t conn_handle, mp_buffer_info_t *bufinfo, uint16_t hvx_type) {
+static void characteristic_gatts_notify_indicate(uint16_t handle, uint16_t conn_handle, mp_buffer_info_t *bufinfo, uint16_t hvx_type) {
     uint16_t hvx_len = bufinfo->len;
 
     ble_gatts_hvx_params_t hvx_params = {
@@ -128,6 +107,19 @@ void common_hal_bleio_characteristic_construct(bleio_characteristic_obj_t *self,
     } else {
         common_hal_bleio_service_add_characteristic(self->service, self, initial_value_bufinfo, user_description);
     }
+}
+
+bool common_hal_bleio_characteristic_deinited(bleio_characteristic_obj_t *self) {
+    return self->handle == BLE_GATT_HANDLE_INVALID;
+}
+
+void common_hal_bleio_characteristic_deinit(bleio_characteristic_obj_t *self) {
+    if (common_hal_bleio_characteristic_deinited(self)) {
+        return;
+    }
+    self->handle = BLE_GATT_HANDLE_INVALID;
+    // TODO: Can we remove this from the soft device? Right now we assume the
+    // reset clears things.
 }
 
 mp_obj_tuple_t *common_hal_bleio_characteristic_get_descriptors(bleio_characteristic_obj_t *self) {

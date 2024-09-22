@@ -1,30 +1,10 @@
-/*
- * This file is part of the MicroPython project, http://micropython.org/
- *
- * The MIT License (MIT)
- *
- * Copyright (c) 2020 Dan Halbert for Adafruit Industries
- * Copyright (c) 2020 Scott Shawcroft for Adafruit Industries
- * Copyright (c) 2021 Junji Sakai
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+// This file is part of the CircuitPython project: https://circuitpython.org
+//
+// SPDX-FileCopyrightText: Copyright (c) 2020 Dan Halbert for Adafruit Industries
+// SPDX-FileCopyrightText: Copyright (c) 2020 Scott Shawcroft for Adafruit Industries
+// SPDX-FileCopyrightText: Copyright (c) 2021 Junji Sakai
+//
+// SPDX-License-Identifier: MIT
 
 #include "py/runtime.h"
 #include <stdio.h>
@@ -143,11 +123,16 @@ void alarm_pin_pinalarm_reset(void) {
 static void configure_pins_for_sleep(void) {
     _pinhandler_gpiote_count = 0;
 
+    int n_pin_alarms = __builtin_popcountll(high_alarms) + __builtin_popcountll(low_alarms);
+    const int MAX_N_PIN_ALARMS_FOR_SENSE_FEATURE = 2;
+
     nrfx_gpiote_in_config_t cfg = {
         .sense = NRF_GPIOTE_POLARITY_TOGGLE,
         .pull = NRF_GPIO_PIN_PULLUP,
         .is_watcher = false,
-        .hi_accuracy = true,
+        // hi_accuracy = False reduces sleep current by a factor of ~10x by using the SENSE feature,
+        // but only works if not more than MAX_N_PIN_ALARMS_FOR_SENSE_FEATURE pin alarms are used.
+        .hi_accuracy = (n_pin_alarms > MAX_N_PIN_ALARMS_FOR_SENSE_FEATURE),
         .skip_gpio_setup = false
     };
     for (size_t i = 0; i < 64; ++i) {

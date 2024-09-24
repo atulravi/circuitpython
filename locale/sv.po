@@ -677,13 +677,13 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr "Buffertlängd %d för stor. Den måste vara mindre än %d"
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr "Buffertlängd måste vara en multipel av 512"
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
-msgstr "Bufferten måste vara en multipel av 512 byte"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
+msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -1210,11 +1210,13 @@ msgstr "Interrupt-fel."
 msgid "Interrupted by output function"
 msgstr "Avbruten av utgångsfunktion"
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1334,6 +1336,7 @@ msgid "MAC address was invalid"
 msgstr "MAC-adressen var ogiltig"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1566,9 +1569,10 @@ msgid "Not supported JPEG standard"
 msgstr "JPEG-standard stöds ej"
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
-msgstr "Antal data_pins måste vara 8 eller 16, inte %d"
+msgid "Number of data_pins must be %d or %d, not %d"
+msgstr ""
 
 #: shared-bindings/util.c
 msgid ""
@@ -1901,10 +1905,11 @@ msgstr "SDCard start"
 msgid "SDIO GetCardInfo Error %d"
 msgstr "SDIO GetCardInfo-fel %d"
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
-msgstr "SDIO Init-fel %d"
+msgid "SDIO Init Error %x"
+msgstr ""
 
 #: ports/espressif/common-hal/busio/SPI.c
 msgid "SPI configuration failed"
@@ -2283,14 +2288,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr "Värdets längde ! = krävd fast längd"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -3149,7 +3152,8 @@ msgstr "funktionen saknar det obligatoriska nyckelordsargumentet '%q'"
 msgid "function missing required positional argument #%d"
 msgstr "funktionen saknar det obligatoriska positionsargumentet #%d"
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr "funktionen kräver %d positionsargument men %d angavs"
@@ -3301,7 +3305,7 @@ msgstr "indata måste vara en 1D ndarray"
 msgid "input must be a dense ndarray"
 msgstr "indata måste vara en dense ndarray"
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr "indata måste vara en ndarray"
 
@@ -4414,6 +4418,20 @@ msgstr "zi måste vara av typ float"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi måste vara i formen (n_section, 2)"
+
+#~ msgid "Buffer length must be a multiple of 512"
+#~ msgstr "Buffertlängd måste vara en multipel av 512"
+
+#~ msgid "Buffer must be a multiple of 512 bytes"
+#~ msgstr "Bufferten måste vara en multipel av 512 byte"
+
+#, c-format
+#~ msgid "Number of data_pins must be 8 or 16, not %d"
+#~ msgstr "Antal data_pins måste vara 8 eller 16, inte %d"
+
+#, c-format
+#~ msgid "SDIO Init Error %d"
+#~ msgstr "SDIO Init-fel %d"
 
 #~ msgid "can't unambiguously get sizeof scalar"
 #~ msgstr "kan inte entydigt få fram storleken på skalären"

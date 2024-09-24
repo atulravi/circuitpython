@@ -705,13 +705,13 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr "버퍼 길이 %d가 너무 큽니다. 그것은 %d보다 작아야 합니다"
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr "버퍼 길이는 512의 배수여야 합니다"
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
-msgstr "버퍼는 512 바이트의 배수여야 합니다"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
+msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -1237,11 +1237,13 @@ msgstr "인터럽트 오류."
 msgid "Interrupted by output function"
 msgstr "출력 함수로 인해 종료되었다"
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1361,6 +1363,7 @@ msgid "MAC address was invalid"
 msgstr "MAC 주소는 잘못되었습니다"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1601,9 +1604,10 @@ msgid "Not supported JPEG standard"
 msgstr "지원되지 않는 JPEG 표준"
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
-msgstr "data_pins은 %d이 아닌, 8 또는 16개 여야 합니다"
+msgid "Number of data_pins must be %d or %d, not %d"
+msgstr ""
 
 #: shared-bindings/util.c
 msgid ""
@@ -1943,9 +1947,10 @@ msgstr ""
 msgid "SDIO GetCardInfo Error %d"
 msgstr ""
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
+msgid "SDIO Init Error %x"
 msgstr ""
 
 #: ports/espressif/common-hal/busio/SPI.c
@@ -2322,14 +2327,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -3178,7 +3181,8 @@ msgstr ""
 msgid "function missing required positional argument #%d"
 msgstr ""
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr ""
@@ -3330,7 +3334,7 @@ msgstr ""
 msgid "input must be a dense ndarray"
 msgstr ""
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr ""
 
@@ -4441,6 +4445,16 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "Buffer length must be a multiple of 512"
+#~ msgstr "버퍼 길이는 512의 배수여야 합니다"
+
+#~ msgid "Buffer must be a multiple of 512 bytes"
+#~ msgstr "버퍼는 512 바이트의 배수여야 합니다"
+
+#, c-format
+#~ msgid "Number of data_pins must be 8 or 16, not %d"
+#~ msgstr "data_pins은 %d이 아닌, 8 또는 16개 여야 합니다"
 
 #~ msgid "Name too long"
 #~ msgstr "이름이 너무 깁니다"

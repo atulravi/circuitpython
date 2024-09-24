@@ -663,13 +663,13 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr "Buffer lengte %d te groot. Het moet kleiner zijn dan %d"
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr "Buffer lengte moet een veelvoud van 512 zijn"
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
-msgstr "Buffer moet een veelvoud van 512 bytes zijn"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
+msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -1188,11 +1188,13 @@ msgstr ""
 msgid "Interrupted by output function"
 msgstr ""
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1312,6 +1314,7 @@ msgid "MAC address was invalid"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1544,8 +1547,9 @@ msgid "Not supported JPEG standard"
 msgstr ""
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
+msgid "Number of data_pins must be %d or %d, not %d"
 msgstr ""
 
 #: shared-bindings/util.c
@@ -1880,10 +1884,11 @@ msgstr ""
 msgid "SDIO GetCardInfo Error %d"
 msgstr "SDIO GetCardInfo Fout %d"
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
-msgstr "SDIO Init Fout %d"
+msgid "SDIO Init Error %x"
+msgstr ""
 
 #: ports/espressif/common-hal/busio/SPI.c
 msgid "SPI configuration failed"
@@ -2260,14 +2265,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr "Waarde lengte != vereist vaste lengte"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -3121,7 +3124,8 @@ msgstr "functie mist vereist sleutelwoord argument \"%q"
 msgid "function missing required positional argument #%d"
 msgstr "functie mist vereist positie-argument #%d"
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr ""
@@ -3274,7 +3278,7 @@ msgstr ""
 msgid "input must be a dense ndarray"
 msgstr "invoer moet een gesloten ndarray zijn"
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr "invoer moet een ndarray zijn"
 
@@ -4387,6 +4391,16 @@ msgstr "zi moet van type float zijn"
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr "zi moet vorm (n_section, 2) hebben"
+
+#~ msgid "Buffer length must be a multiple of 512"
+#~ msgstr "Buffer lengte moet een veelvoud van 512 zijn"
+
+#~ msgid "Buffer must be a multiple of 512 bytes"
+#~ msgstr "Buffer moet een veelvoud van 512 bytes zijn"
+
+#, c-format
+#~ msgid "SDIO Init Error %d"
+#~ msgstr "SDIO Init Fout %d"
 
 #~ msgid "struct: index out of range"
 #~ msgstr "struct: index buiten bereik"

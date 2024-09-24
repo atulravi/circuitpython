@@ -674,13 +674,13 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr "Délka vyrovnávací paměti %d je příliš velká. Musí být menší než %d"
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr "Délka vyrovnávací paměti musí být násobkem 512"
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
-msgstr "Buffer musí být násobkem 512 bajtů"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
+msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -1203,11 +1203,13 @@ msgstr "Chyba přerušení."
 msgid "Interrupted by output function"
 msgstr ""
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1327,6 +1329,7 @@ msgid "MAC address was invalid"
 msgstr "MAC adresa byla chybná"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1559,9 +1562,10 @@ msgid "Not supported JPEG standard"
 msgstr ""
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
-msgstr "Počet data_pins musí být 8 nebo 16, nikoli %d"
+msgid "Number of data_pins must be %d or %d, not %d"
+msgstr ""
 
 #: shared-bindings/util.c
 msgid ""
@@ -1889,10 +1893,11 @@ msgstr "Inicializace SD karty"
 msgid "SDIO GetCardInfo Error %d"
 msgstr "SDIO GetCardInfo chyba %d"
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
-msgstr "Inicializace SDIO chyba %d"
+msgid "SDIO Init Error %x"
+msgstr ""
 
 #: ports/espressif/common-hal/busio/SPI.c
 msgid "SPI configuration failed"
@@ -2268,14 +2273,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -3129,7 +3132,8 @@ msgstr "funkci chybí argument specifikovaný klíčovým slovem"
 msgid "function missing required positional argument #%d"
 msgstr "funkci chybí požadovaný argument na pozici #%d"
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr ""
@@ -3281,7 +3285,7 @@ msgstr "vstup musí být 1D ndarray"
 msgid "input must be a dense ndarray"
 msgstr "vstup musí být hustý ndarray"
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr "vstup musí být ndarray"
 
@@ -4392,6 +4396,20 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "Buffer length must be a multiple of 512"
+#~ msgstr "Délka vyrovnávací paměti musí být násobkem 512"
+
+#~ msgid "Buffer must be a multiple of 512 bytes"
+#~ msgstr "Buffer musí být násobkem 512 bajtů"
+
+#, c-format
+#~ msgid "Number of data_pins must be 8 or 16, not %d"
+#~ msgstr "Počet data_pins musí být 8 nebo 16, nikoli %d"
+
+#, c-format
+#~ msgid "SDIO Init Error %d"
+#~ msgstr "Inicializace SDIO chyba %d"
 
 #~ msgid "Name too long"
 #~ msgstr "Jméno je příliš dlouhé"

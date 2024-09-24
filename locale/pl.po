@@ -671,13 +671,13 @@ msgid "Buffer length %d too big. It must be less than %d"
 msgstr "Długość %d bufora jest za duża. Musi być mniejsza niż %d"
 
 #: ports/atmel-samd/common-hal/sdioio/SDCard.c
-#: ports/cxd56/common-hal/sdioio/SDCard.c shared-module/sdcardio/SDCard.c
-msgid "Buffer length must be a multiple of 512"
-msgstr "Długość bufora musi być wielokrotnością 512"
-
+#: ports/cxd56/common-hal/sdioio/SDCard.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c shared-bindings/floppyio/__init__.c
-msgid "Buffer must be a multiple of 512 bytes"
-msgstr "Bufor musi być wielokrotnością 512 bajtów"
+#: shared-module/sdcardio/SDCard.c
+#, c-format
+msgid "Buffer must be a multiple of %d bytes"
+msgstr ""
 
 #: shared-bindings/_bleio/PacketBuffer.c
 #, c-format
@@ -1207,11 +1207,13 @@ msgstr ""
 msgid "Interrupted by output function"
 msgstr ""
 
+#: ports/espressif/common-hal/_bleio/Service.c
 #: ports/espressif/common-hal/espulp/ULP.c
 #: ports/espressif/common-hal/microcontroller/Processor.c
 #: ports/mimxrt10xx/common-hal/audiobusio/__init__.c
 #: ports/mimxrt10xx/common-hal/pwmio/PWMOut.c
 #: ports/raspberrypi/bindings/picodvi/Framebuffer.c
+#: ports/raspberrypi/bindings/rp2pio/StateMachine.c
 #: ports/raspberrypi/common-hal/picodvi/Framebuffer_RP2040.c py/argcheck.c
 #: shared-bindings/digitalio/DigitalInOut.c
 #: shared-bindings/epaperdisplay/EPaperDisplay.c shared-bindings/pwmio/PWMOut.c
@@ -1331,6 +1333,7 @@ msgid "MAC address was invalid"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
+#: ports/espressif/common-hal/_bleio/Descriptor.c
 msgid "MITM security not supported"
 msgstr ""
 
@@ -1563,8 +1566,9 @@ msgid "Not supported JPEG standard"
 msgstr ""
 
 #: ports/espressif/common-hal/paralleldisplaybus/ParallelBus.c
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "Number of data_pins must be 8 or 16, not %d"
+msgid "Number of data_pins must be %d or %d, not %d"
 msgstr ""
 
 #: shared-bindings/util.c
@@ -1894,9 +1898,10 @@ msgstr ""
 msgid "SDIO GetCardInfo Error %d"
 msgstr ""
 
+#: ports/espressif/common-hal/sdioio/SDCard.c
 #: ports/stm/common-hal/sdioio/SDCard.c
 #, c-format
-msgid "SDIO Init Error %d"
+msgid "SDIO Init Error %x"
 msgstr ""
 
 #: ports/espressif/common-hal/busio/SPI.c
@@ -2274,14 +2279,12 @@ msgid "Update failed"
 msgstr ""
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length != required fixed length"
 msgstr "Długość wartości ! = Wymagana stała długość"
 
 #: ports/espressif/common-hal/_bleio/Characteristic.c
-#: ports/espressif/common-hal/_bleio/Descriptor.c
 #: ports/nordic/common-hal/_bleio/Characteristic.c
 #: ports/nordic/common-hal/_bleio/Descriptor.c
 msgid "Value length > max_length"
@@ -3131,7 +3134,8 @@ msgstr "brak wymaganego argumentu nazwanego '%q' funkcji"
 msgid "function missing required positional argument #%d"
 msgstr "brak wymaganego argumentu pozycyjnego #%d funkcji"
 
-#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/time/__init__.c
+#: py/argcheck.c py/bc.c py/objnamedtuple.c shared-bindings/_eve/__init__.c
+#: shared-bindings/time/__init__.c
 #, c-format
 msgid "function takes %d positional arguments but %d were given"
 msgstr "funkcja wymaga %d argumentów pozycyjnych, ale jest %d"
@@ -3284,7 +3288,7 @@ msgstr ""
 msgid "input must be a dense ndarray"
 msgstr ""
 
-#: extmod/ulab/code/user/user.c
+#: extmod/ulab/code/user/user.c shared-bindings/_eve/__init__.c
 msgid "input must be an ndarray"
 msgstr ""
 
@@ -4395,6 +4399,12 @@ msgstr ""
 #: extmod/ulab/code/scipy/signal/signal.c
 msgid "zi must be of shape (n_section, 2)"
 msgstr ""
+
+#~ msgid "Buffer length must be a multiple of 512"
+#~ msgstr "Długość bufora musi być wielokrotnością 512"
+
+#~ msgid "Buffer must be a multiple of 512 bytes"
+#~ msgstr "Bufor musi być wielokrotnością 512 bajtów"
 
 #~ msgid "struct: index out of range"
 #~ msgstr "struct: indeks poza zakresem"

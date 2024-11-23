@@ -102,7 +102,7 @@ MP_DEFINE_CONST_FUN_OBJ_KW(floppyio_flux_readinto_obj, 0, floppyio_flux_readinto
 //|         def ns_to_count(ns, samplerate):
 //|             return round(ns * samplerate * 1e-9)
 //|
-//|      This means the following typical values are a good starting place for a 1.44MB floppy:
+//|     This means the following typical values are a good starting place for a 1.44MB floppy:
 //|
 //|     .. code-block:: py
 //|

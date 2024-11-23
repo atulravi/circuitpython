@@ -37,12 +37,8 @@ static mp_obj_t keypad_generic_get_key_count(mp_obj_t self_in) {
 }
 MP_DEFINE_CONST_FUN_OBJ_1(keypad_generic_get_key_count_obj, keypad_generic_get_key_count);
 
-const mp_obj_property_t keypad_generic_key_count_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&keypad_generic_get_key_count_obj,
-              MP_ROM_NONE,
-              MP_ROM_NONE},
-};
+MP_PROPERTY_GETTER(keypad_generic_key_count_obj,
+    (mp_obj_t)&keypad_generic_get_key_count_obj);
 
 static mp_obj_t keypad_generic_get_events(mp_obj_t self_in) {
     keypad_keymatrix_obj_t *self = MP_OBJ_TO_PTR(self_in);
@@ -52,13 +48,8 @@ static mp_obj_t keypad_generic_get_events(mp_obj_t self_in) {
 }
 MP_DEFINE_CONST_FUN_OBJ_1(keypad_generic_get_events_obj, keypad_generic_get_events);
 
-const mp_obj_property_t keypad_generic_events_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&keypad_generic_get_events_obj,
-              MP_ROM_NONE,
-              MP_ROM_NONE},
-};
-
+MP_PROPERTY_GETTER(keypad_generic_events_obj,
+    (mp_obj_t)&keypad_generic_get_events_obj);
 
 //| """Support for scanning keys and key matrices
 //|

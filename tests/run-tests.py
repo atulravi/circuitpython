@@ -829,6 +829,10 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
                 "PATH": os.environ["PATH"],
                 "LANG": "en_US.UTF-8",
             }
+            # CIRCUITPY-CHANGE: --keep-path applies to PYTHONPATH as well
+            if args.keep_path and os.getenv("PYTHONPATH"):
+                e["PYTHONPATH"] += ":" + os.getenv("PYTHONPATH")
+
             # run CPython to work out expected output
             try:
                 output_expected = subprocess.check_output(

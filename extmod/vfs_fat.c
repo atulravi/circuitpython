@@ -484,12 +484,9 @@ static mp_obj_t vfs_fat_getreadonly(mp_obj_t self_in) {
     return mp_obj_new_bool(!filesystem_is_writable_by_python(self));
 }
 static MP_DEFINE_CONST_FUN_OBJ_1(fat_vfs_getreadonly_obj, vfs_fat_getreadonly);
-static const mp_obj_property_t fat_vfs_readonly_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&fat_vfs_getreadonly_obj,
-              MP_ROM_NONE,
-              MP_ROM_NONE},
-};
+
+static MP_PROPERTY_GETTER(fat_vfs_readonly_obj,
+    (mp_obj_t)&fat_vfs_getreadonly_obj);
 
 #if MICROPY_FATFS_USE_LABEL
 static mp_obj_t vfs_fat_getlabel(mp_obj_t self_in) {
@@ -517,12 +514,10 @@ static mp_obj_t vfs_fat_setlabel(mp_obj_t self_in, mp_obj_t label_in) {
     return mp_const_none;
 }
 static MP_DEFINE_CONST_FUN_OBJ_2(fat_vfs_setlabel_obj, vfs_fat_setlabel);
-static const mp_obj_property_t fat_vfs_label_obj = {
-    .base.type = &mp_type_property,
-    .proxy = {(mp_obj_t)&fat_vfs_getlabel_obj,
-              (mp_obj_t)&fat_vfs_setlabel_obj,
-              MP_ROM_NONE},
-};
+
+static MP_PROPERTY_GETSET(fat_vfs_label_obj,
+    (mp_obj_t)&fat_vfs_getlabel_obj,
+    (mp_obj_t)&fat_vfs_setlabel_obj);
 #endif
 
 static const mp_rom_map_elem_t fat_vfs_locals_dict_table[] = {

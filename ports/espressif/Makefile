@@ -65,7 +65,6 @@ INC += \
 	-isystem esp-idf/components/bt/host/nimble/nimble/porting/nimble/include \
 	-isystem esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include \
 	-isystem esp-idf/components/bt/host/nimble/port/include \
-	-isystem esp-idf/components/driver/i2c/include \
 	-isystem esp-idf/components/driver/touch_sensor/include \
 	-isystem esp-idf/components/driver/touch_sensor/$(IDF_TARGET)/include \
 	-isystem esp-idf/components/driver/twai/include \
@@ -396,7 +395,6 @@ SRC_C += \
 	boards/$(BOARD)/board.c \
 	boards/$(BOARD)/pins.c \
 	shared/netutils/netutils.c \
-	peripherals/i2c.c \
 	peripherals/$(IDF_TARGET)/pins.c
 
 ifeq ($(CIRCUITPY_SSL),1)
@@ -618,7 +616,7 @@ ifeq ($(IDF_TARGET),esp32)
 BINARY_BLOBS += esp-idf/components/esp_phy/lib/$(IDF_TARGET)/librtc.a
 endif
 
-ESP_IDF_COMPONENTS_LINK = $(IDF_TARGET_ARCH) $(CHIP_COMPONENTS) app_update bootloader_support driver esp_driver_gpio esp_driver_gptimer esp_driver_ledc esp_driver_spi esp_driver_uart efuse esp_adc esp_app_format esp_common esp_event esp_hw_support esp_mm esp_partition esp_pm esp_ringbuf esp_rom esp_system esp_timer freertos hal heap log newlib nvs_flash pthread soc spi_flash vfs esp_vfs_console
+ESP_IDF_COMPONENTS_LINK = $(IDF_TARGET_ARCH) $(CHIP_COMPONENTS) app_update bootloader_support driver esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_ledc esp_driver_spi esp_driver_uart efuse esp_adc esp_app_format esp_common esp_event esp_hw_support esp_mm esp_partition esp_pm esp_ringbuf esp_rom esp_system esp_timer freertos hal heap log newlib nvs_flash pthread soc spi_flash vfs esp_vfs_console
 ifneq ($(CIRCUITPY_WIFI),0)
 	ESP_IDF_COMPONENTS_LINK += esp_coex esp_netif esp-tls esp_wifi lwip mbedtls mdns wpa_supplicant esp_phy
 endif

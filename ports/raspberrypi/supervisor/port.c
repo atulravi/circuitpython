@@ -13,7 +13,6 @@
 
 #include "bindings/rp2pio/StateMachine.h"
 #include "genhdr/mpversion.h"
-#include "shared-bindings/busio/I2C.h"
 #include "shared-bindings/busio/SPI.h"
 #include "shared-bindings/countio/Counter.h"
 #include "shared-bindings/microcontroller/__init__.h"
@@ -245,7 +244,7 @@ void port_heap_init(void) {
     _heap = tlsf_create_with_pool(heap_bottom, size, 64 * 1024 * 1024);
     _ram_pool = tlsf_get_pool(_heap);
     if (_psram_size > 0) {
-        _psram_pool = tlsf_add_pool(_heap, (void *)0x11000004, _psram_size - 4);
+        _psram_pool = tlsf_add_pool(_heap, (void *)0x11000000, _psram_size);
     }
 }
 
@@ -327,8 +326,6 @@ safe_mode_t port_init(void) {
     // Reset everything into a known state before board_init.
     reset_port();
 
-    serial_early_init();
-
     #ifdef CIRCUITPY_PSRAM_CHIP_SELECT
     setup_psram();
     #endif
@@ -367,7 +364,6 @@ safe_mode_t port_init(void) {
 
 void reset_port(void) {
     #if CIRCUITPY_BUSIO
-    reset_i2c();
     reset_spi();
     reset_uart();
     #endif
